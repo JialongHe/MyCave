@@ -18,7 +18,9 @@ samples, guidance on mobile development, and a full API reference.
 # TODO:
     1.Text Viewer
     2.Audio
-    3.Video
-    4.Style Customizer
-    5.Realtime Transfer
-    6.NetDesk
+    3.Realtime Transfer
+    4.Logger
+    5.Video
+    6.Style Customizer
+    7.NetDesk
+    

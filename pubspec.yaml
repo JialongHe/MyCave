@@ -52,7 +52,14 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  # TODO: Customized font style, not sure if working
+  fonts:
+    - family: Arial
+      fonts:
+        - asset: fonts/Arial.ttf
+    - family: NotoSansSC-Regular
+      fonts:
+        - asset: fonts/NotoSansSC-Regular.otf
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
