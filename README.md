@@ -23,4 +23,5 @@ samples, guidance on mobile development, and a full API reference.
     5.Video
     6.Style Customizer
     7.NetDesk
+    8.Login (depends on business model: Subscription-Based/On-Demand)
     
