@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:my_cave/components/bar.dart';
+import 'package:my_cave/widget/click_scope.dart';
+import 'package:my_cave/widget/image_button.dart';
+import 'package:my_cave/widget/primary_button.dart';
 import 'components/page_template.dart';
 
 // TODO: add a "back to top" button, and showing state control
@@ -40,27 +43,12 @@ class LauncherState extends State<Launcher> {
               border: Border.fromBorderSide(BorderSide(color: Colors.grey)),
               // Border(bottom: BorderSide(color: Colors.black)),
               children: [
-                Image(
-                  image: AssetImage("assets/icons/menu-burger.png"),
-                  fit: BoxFit.fill,
-                  height: 40,
-                  width: 40,
-                ),
-                Image(
-                  image: AssetImage("assets/icons/search.png"),
-                  fit: BoxFit.fill,
-                  height: 40,
-                  width: 40,
-                ),
-                Image(
-                  image: AssetImage("assets/icons/cross.png"),
-                  fit: BoxFit.fill,
-                  height: 40,
-                  width: 40,
-                ),
+                ImageButton(url: "assets/icons/menu-burger.png", width: 40, height: 40),
+                ImageButton(url: "assets/icons/search.png", width: 40, height: 40),
+                ImageButton(url: "assets/icons/cross.png", width: 40, height: 40),
               ],
             ),
-            content: Positioned(
+            content: const Positioned(
               top: 100,
               left: 0,
               right: 0,
@@ -69,26 +57,11 @@ class LauncherState extends State<Launcher> {
             bottom: Bar(
               height: 100,
               border: Border.fromBorderSide(BorderSide(color: Colors.grey)),
-              children: const [
-                Image(
-                  image: AssetImage("assets/icons/home.png"),
-                  fit: BoxFit.fill,
-                  height: 40,
-                  width: 40,
-                ),
-                Image(
-                  image: AssetImage("assets/icons/user.png"),
-                  fit: BoxFit.fill,
-                  height: 40,
-                  width: 40,
-                ),
-                Image(
-                  image: AssetImage("assets/icons/settings.png"),
-                  fit: BoxFit.fill,
-                  height: 40,
-                  width: 40,
-                ),
-
+              children: [
+                ImageButton(url: "assets/icons/home.png", width: 40, height: 40),
+                ImageButton(url: "assets/icons/user.png", width: 40, height: 40),
+                PrimaryButton(width: 40, height: 40, text: "Test")
+                // ImageButton(url: "assets/icons/settings.png", width: 40, height: 40),
               ],
             ),
           ),

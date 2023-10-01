@@ -2,23 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import '../styles/theme.dart';
 
-/*
-  An integreted scope for click situation
- */
+class ClickScope extends StatefulWidget {
+  ClickScope({
+    Key? key,
+    this.onClick,
+    this.child,
+    this.childBuilder
+  }) : super(key: key);
 
-class AppClickScope extends StatefulWidget {
   void Function()? onClick;
   Widget? child;
-
   /// For now, we use [Opacity] widget to implement opacity effect, but with greater Performance loss
   /// Try use [childBuilder] and avoid using [Opacity], eg. use Color.withOpacity for colors
   Widget Function(double opacity)? childBuilder;
 
   @override
-  State<StatefulWidget> createState() {return AppClickScopeState();}
+  State<StatefulWidget> createState() => ClickScopeState();
 }
 
-class AppClickScopeState extends State<AppClickScope> {
+class ClickScopeState extends State<ClickScope> {
   bool _hovering = false;
 
   void _flashPressed() {
