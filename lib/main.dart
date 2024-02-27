@@ -1,72 +1,59 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:my_cave/components/bar.dart';
-import 'package:my_cave/widget/click_scope.dart';
-import 'package:my_cave/widget/image_button.dart';
-import 'package:my_cave/widget/primary_button.dart';
-import 'components/page_template.dart';
-
-// TODO: add a "back to top" button, and showing state control
-// temprary no login, but TODO: NOTE: style control
-// TODO: probably some mode transfer control here, like a drawer
+import 'package:my_cave/common/stack_view.dart';
+import 'package:my_cave/util/logger.dart';
+import 'package:my_cave/util/router.dart' as router;
 
 void main() {
-  // Init Platform
-  // TODO: [COMMERCIALS] add ads and keyEvent
-  // TODO: expect and solve image/video cache problems
-
   runApp(const Launcher());
 }
 
 class LauncherState extends State<Launcher> {
-  Size screenSize = Size.zero;
+  @override
+  void initState() {
+    super.initState();
+
+    // TODO: Initialize volume plugin here
+  }
 
   @override
   Widget build(BuildContext context) {
-
-    // TODO: Use mediaquery and do responsive layout, NOTE: would rebuild every time mediaQuery data changes
-    // DO NOT USE MediaQuery.of, would rebuild much more
-    // MediaQuery.sizeOf(context)
-    // Using MediaQuery.sizeOf would cause view to rebuild whenever the size changes
-    screenSize = MediaQuery.sizeOf(context);
-
     return MediaQuery(
-        data: MediaQueryData(),
+        data: const MediaQueryData(),
         child: Directionality(
           textDirection: TextDirection.ltr,
-          child: PageTemplate(
-            header: Bar(
-              // height: 1/9 * screenSize.height,
-              height: 100,
-              // backgroundColor: Colors.red,
-              border: Border.fromBorderSide(BorderSide(color: Colors.grey)),
-              // Border(bottom: BorderSide(color: Colors.black)),
-              children: [
-                ImageButton(url: "assets/icons/menu-burger.png", width: 40, height: 40),
-                ImageButton(url: "assets/icons/search.png", width: 40, height: 40),
-                ImageButton(url: "assets/icons/cross.png", width: 40, height: 40),
-              ],
-            ),
-            content: const Positioned(
-              top: 100,
-              left: 0,
-              right: 0,
-              child: Text("123"),
-            ),
-            bottom: Bar(
-              height: 100,
-              border: Border.fromBorderSide(BorderSide(color: Colors.grey)),
-              children: [
-                ImageButton(url: "assets/icons/home.png", width: 40, height: 40),
-                ImageButton(url: "assets/icons/user.png", width: 40, height: 40),
-                PrimaryButton(width: 40, height: 40, text: "Test")
-                // ImageButton(url: "assets/icons/settings.png", width: 40, height: 40),
-              ],
+          child: ScrollConfiguration(
+            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: true),
+            child: DefaultTextStyle(
+              style: const TextStyle(
+                  fontFamily: "NotoSansSC-Regular",
+                  fontFamilyFallback: ["Arial"]
+                ),
+                child: Container(
+                  child: Stack(
+                    children: [
+                      StackView(
+                        initialRoute: "home",
+                        onGenerateRoute: (RouteSettings settings) {
+                          logInfo('onGenerateRoute: $settings');
+                          
+                          final contentBuilder = router.routeConfig[settings.name];
+                          if (contentBuilder == null) throw Exception('Invalid route: ${settings.name}');
+                          return router.CustomRouterBuilder<void>(builder: contentBuilder, settings: settings);
+                        },
+                      ),
+                      // VolumePlugin
+                    ],
+                  ),
+                  // width:
+                  // height:
+                  // color: TODO: Night mode?
+                ),
+              ),
             ),
           ),
-        )
-    );
+        );
   }
 }
 
