@@ -1,31 +1,68 @@
-// import 'package:flutter/material.dart';
-// import 'click_scope.dart';
+import 'package:flutter/widgets.dart';
 
-// class ImageButton extends StatelessWidget {
-//   ImageButton({
-//     Key? key,
-//     required this.url,
-//     this.height,
-//     this.width,
-//     this.onClick
-//   }) : super(key: key);
+class ImageButton extends StatefulWidget {
+  ImageButton({
+    super.key,
+    required this.onPressed,
+    required this.image,
+    required this.width,
+    required this.height,
+    this.fit,
+  });
 
-//   String url;
-//   double? height;
-//   double? width;
-//   void Function()? onClick;
+  final ImageProvider image;
+  final VoidCallback onPressed;
+  double? width;
+  double? height;
+  BoxFit? fit;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     // TODO: support other source of Image
-//     return ClickScope(
-//       onClick: onClick,
-//       child: Image(
-//         image: AssetImage(url),
-//         fit: BoxFit.fill,
-//         height: width,
-//         width: height,
-//       ),
-//     );
-//   }
-// }
+  @override
+  State<StatefulWidget> createState() {
+    return ImageButtonState();
+  }
+}
+
+class ImageButtonState extends State<ImageButton> {
+  bool hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      child: AnimatedContainer(
+        duration: const Duration(microseconds: 500),
+        width: hovered ? widget.width! * 0.9 : widget.width,
+        height: hovered ? widget.height! * 0.9 : widget.height,
+        child: Image(
+          image: widget.image,
+          // width: widget.width,
+          // height: widget.height,
+          fit: widget.fit,
+          colorBlendMode: BlendMode.srcOver,
+          color: hovered ? const Color(0x60000000) : const Color(0x00000000),
+          
+        ),
+      ),
+      onTapDown: (details) {
+        setState(() {
+          hovered = true;
+        });
+      },
+      onTapCancel: () {
+        setState(() {
+          hovered = false;
+        });
+      },
+      onTapUp: (details) {
+        setState(() {
+          hovered = false;
+        });
+      },
+      onTap: () {
+        setState(() {
+          hovered = false;
+        });
+        widget.onPressed();
+      },
+    );
+  }
+}

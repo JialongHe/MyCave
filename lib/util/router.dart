@@ -29,7 +29,7 @@ class CustomRouterBuilder<T> extends PageRoute<T> {
 
 final Map<String, Widget Function(BuildContext context, RouteSettings? settings)> routeConfig = {
   // home
-  "home": (BuildContext context, RouteSettings? settings) => const LauncherPage(),
+  "home": (BuildContext context, RouteSettings? settings) => LauncherPage(),
 
   // setting
 };

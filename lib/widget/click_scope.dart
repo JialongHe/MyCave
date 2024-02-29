@@ -4,15 +4,15 @@
 
 // class ClickScope extends StatefulWidget {
 //   ClickScope({
-//     Key? key,
+//     super.key,
 //     this.onClick,
 //     this.child,
 //     this.childBuilder
-//   }) : super(key: key);
+//   });
 
 //   void Function()? onClick;
 //   Widget? child;
-//   /// For now, we use [Opacity] widget to implement opacity effect, but with greater Performance loss
+//   /// For now, we use [Opacity] widget to implement opacity effect with greater Performance loss
 //   /// Try use [childBuilder] and avoid using [Opacity], eg. use Color.withOpacity for colors
 //   Widget Function(double opacity)? childBuilder;
 
@@ -27,14 +27,14 @@
 //     setState(() {
 //       _hovering = true;
 //     });
-//     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
+//     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
 //       if (!mounted) return;
 //       setState(() => _hovering = false);
 //     });
 //   }
 
 //   @override
-//   Widget build(BuildContext) {
+//   Widget build(buildContext) {
 //     assert(widget.child == null || widget.childBuilder == null);
 //     final double opacity = _hovering ? Themes.pressedOpacity : Themes.normalOpacity;
 //     late Widget child;

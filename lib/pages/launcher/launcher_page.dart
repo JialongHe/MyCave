@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_cave/util/logger.dart';
 
 class LauncherPage extends StatefulWidget {
-  const LauncherPage() : super(key: const PageStorageKey("LauncherKey"));
+  // const LauncherPage() : super(key: const PageStorageKey("LauncherKey"));
 
   @override
   State<StatefulWidget> createState() {
@@ -12,10 +13,6 @@ class LauncherPage extends StatefulWidget {
 class LauncherPageState extends State<LauncherPage> {
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        Text("whatever"),
-      ],
-    );
+    return Text("TO be implemented");
   }
 }
