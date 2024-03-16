@@ -2,6 +2,7 @@
 MyCave is a flutter app integrated with features I frequently use.
 
 # TODO
+- [ ] Job Application Tracker
 - [ ] Text Viewer
 - [ ] Audio
 - [ ] Realtime Transfer
